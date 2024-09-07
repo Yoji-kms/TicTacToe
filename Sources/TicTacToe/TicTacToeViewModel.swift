@@ -28,11 +28,11 @@ final class TicTacToeViewModel {
                 return
             }
             if columnsResult.isFinal {
-                competion(rowsResult)
+                competion(columnsResult)
                 return
             }
             if diagonalsResult.isFinal {
-                competion(rowsResult)
+                competion(diagonalsResult)
                 return
             }
         } else {
