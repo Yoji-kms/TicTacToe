@@ -69,15 +69,17 @@ public final class TicTacToeView: UIView {
             self.label.topAnchor.constraint(equalTo: self.topAnchor),
             self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
+            self.label.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             
             self.replayButton.topAnchor.constraint(equalTo: self.topAnchor),
             self.replayButton.trailingAnchor.constraint(equalTo: self.leadingAnchor),
             self.replayButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            self.replayButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.label.bottomAnchor),
             self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.collectionView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            self.collectionView.heightAnchor.constraint(equalTo: self.widthAnchor)
+            self.collectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
+            self.collectionView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
         ])
     }
     
@@ -114,8 +116,10 @@ extension TicTacToeView: UICollectionViewDelegate {
         self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result, index in
             guard let self else { return }
             self.collectionView.reloadItems(at: [indexPath])
-            let botsMoveIndexPath = IndexPath(row: index, section: 0)
-            self.collectionView.reloadItems(at: [botsMoveIndexPath])
+            if index >= 0 {
+                let botsMoveIndexPath = IndexPath(row: index, section: 0)
+                self.collectionView.reloadItems(at: [botsMoveIndexPath])
+            }
             if result.isFinal {
                 self.label.text = result.text
             } else {

@@ -117,7 +117,9 @@ final class TicTacToeViewModel {
             data[id].mark = .cross
             self.checkResult() { [weak self] result in
                 guard let self else { return }
-                if !result.isFinal {
+                if result.isFinal {
+                    completion(result, -1)
+                } else {
                     self.makeMove(completion: completion)
                 }
             }
