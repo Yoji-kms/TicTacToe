@@ -1,23 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Bot’s turn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bot’s turn (○)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ход бота (○)"
-          }
-        }
-      }
-    },
     "Lost" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -65,23 +48,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы выиграли 🏆"
-          }
-        }
-      }
-    },
-    "Your turn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your turn (✕)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ваш ход (✕)"
           }
         }
       }

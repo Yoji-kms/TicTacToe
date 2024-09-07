@@ -6,12 +6,10 @@ import UIKit
 public final class TicTacToeView: UIView {
 //    MARK: Variables
     private let viewModel = TicTacToeViewModel()
-    private let yourTurnString = NSLocalizedString("Your turn", comment: "Your turn")
-    private let botsTurnString = NSLocalizedString("Bot’s turn", comment: "Bot’s turn")
     
 //    MARK: Views
     private lazy var label: UILabel = {
-        let text = self.yourTurnString
+        let text = ""
         let label = UILabel()
         label.text = text
         
@@ -68,6 +66,14 @@ public final class TicTacToeView: UIView {
         self.addSubview(self.collectionView)
         
         NSLayoutConstraint.activate([
+            self.label.topAnchor.constraint(equalTo: self.topAnchor),
+            self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
+            
+            self.replayButton.topAnchor.constraint(equalTo: self.topAnchor),
+            self.replayButton.trailingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.replayButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            
             self.collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.collectionView.widthAnchor.constraint(equalTo: self.widthAnchor),
@@ -78,7 +84,7 @@ public final class TicTacToeView: UIView {
 //    MARK: Actions
     @objc private func replayButtonDidTap() {
         self.viewModel.replay(){
-            self.label.text = self.yourTurnString
+            self.label.text = ""
             self.collectionView.reloadData()
             self.collectionView.allowsSelection = true
         }
@@ -105,18 +111,14 @@ extension TicTacToeView: UICollectionViewDataSource {
 extension TicTacToeView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.collectionView.allowsSelection = false
-        self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result in
+        self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result, index in
             guard let self else { return }
             self.collectionView.reloadItems(at: [indexPath])
-            self.label.text = result.isFinal ? result.text : self.botsTurnString
-        } completionAfterBotsMove: { [weak self] result, index in
-            guard let self else { return }
             let botsMoveIndexPath = IndexPath(row: index, section: 0)
             self.collectionView.reloadItems(at: [botsMoveIndexPath])
             if result.isFinal {
                 self.label.text = result.text
             } else {
-                self.label.text = yourTurnString
                 self.collectionView.allowsSelection = true
             }
         } completionIfCellNotEmpty: {

@@ -110,17 +110,15 @@ final class TicTacToeViewModel {
     
     func cellDidTap(
         id: Int,
-        completionAfterPlayersMove: @escaping (Result)->Void,
-        completionAfterBotsMove: @escaping (Result, Int)->Void,
+        completion: @escaping (Result, Int)->Void,
         completionIfCellNotEmpty: @escaping ()->Void)
     {
         if data[id].mark == .none {
             data[id].mark = .cross
             self.checkResult() { [weak self] result in
                 guard let self else { return }
-                completionAfterPlayersMove(result)
                 if !result.isFinal {
-                    self.makeMove(completion: completionAfterBotsMove)
+                    self.makeMove(completion: completion)
                 }
             }
         } else {
