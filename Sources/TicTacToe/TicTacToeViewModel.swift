@@ -15,7 +15,6 @@ final class TicTacToeViewModel {
             var cell = CellModel(coordinates: id.coordinates, mark: .none)
             data.append(cell)
         }
-        data[5].mark = .circle
     }
     
     private func checkResult(competion: @escaping (Result)->Void) {
@@ -24,9 +23,18 @@ final class TicTacToeViewModel {
         let diagonalsResult = self.checkDiagonals()
         
         if rowsResult.isFinal || columnsResult.isFinal || diagonalsResult.isFinal {
-            if rowsResult.isFinal { competion(rowsResult) }
-            if columnsResult.isFinal { competion(rowsResult) }
-            if diagonalsResult.isFinal { competion(rowsResult) }
+            if rowsResult.isFinal {
+                competion(rowsResult)
+                return
+            }
+            if columnsResult.isFinal {
+                competion(rowsResult)
+                return
+            }
+            if diagonalsResult.isFinal {
+                competion(rowsResult)
+                return
+            }
         } else {
             let tie = self.checkTie()
             if tie == .tie {
