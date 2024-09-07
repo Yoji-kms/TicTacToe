@@ -43,6 +43,7 @@ public final class TicTacToeView: UIView {
         collectionView.backgroundColor = .white
         collectionView.allowsSelection = true
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -98,8 +99,10 @@ extension TicTacToeView: UICollectionViewDataSource {
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+}
+
+extension TicTacToeView: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("cell \(indexPath) did tap")
         self.collectionView.allowsSelection = false
         self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result in
