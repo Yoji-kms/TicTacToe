@@ -12,6 +12,7 @@ public final class TicTacToeView: UIView {
         let text = ""
         let label = UILabel()
         label.text = text
+        label.textAlignment = .center
         
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -21,6 +22,7 @@ public final class TicTacToeView: UIView {
         let button = UIButton()
         let image = UIImage(systemName: "arrow.counterclockwise.circle")
         button.setImage(image, for: .normal)
+        button.tintColor = .black
         button.addTarget(self, action: #selector(self.replayButtonDidTap), for: .touchUpInside)
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +40,7 @@ public final class TicTacToeView: UIView {
         collectionView.isScrollEnabled = false
         collectionView.register(TicTacToeCollectionViewCell.self, forCellWithReuseIdentifier: "TicTacToeCollectionViewCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.allowsSelection = true
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -51,6 +53,7 @@ public final class TicTacToeView: UIView {
 //    MARK: Lifecycle
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         self.setupViews()
     }
     
