@@ -10,7 +10,8 @@ import UIKit
 final class TicTacToeCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .systemPurple
+        imageView.backgroundColor = .systemTeal
+        imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

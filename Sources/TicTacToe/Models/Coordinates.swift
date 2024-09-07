@@ -12,6 +12,6 @@ struct Coordinates {
     let column: Int
     
     var id: Int {
-        return self.column * 3 + self.row
+        return self.row * 3 + self.column
     }
 }
