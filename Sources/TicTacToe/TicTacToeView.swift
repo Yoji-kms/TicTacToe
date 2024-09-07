@@ -3,7 +3,7 @@
 
 import UIKit
 
-final class TicTacToeView: UIView {
+public final class TicTacToeView: UIView {
 //    MARK: Variables
     private let viewModel = TicTacToeViewModel()
     private let yourTurnString = NSLocalizedString("Your turn", comment: "Your turn")
@@ -41,7 +41,7 @@ final class TicTacToeView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.isScrollEnabled = false
         
-        collectionView.delegate = self
+//        collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,16 +81,16 @@ final class TicTacToeView: UIView {
     }
 }
 
-extension TicTacToeView: UICollectionViewDelegate {
-    
-}
+//extension TicTacToeView: UICollectionViewDelegate {
+//    
+//}
 
 extension TicTacToeView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.viewModel.data.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TicTacToeCollectionViewCell", for: indexPath) as? TicTacToeCollectionViewCell else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return cell
