@@ -21,7 +21,7 @@ public final class TicTacToeView: UIView {
     
     private lazy var replayButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: "arrow.counterclockwise.circle")
+        let image = UIImage(systemName: "arrow.counterclockwise.circle")
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(self.replayButtonDidTap), for: .touchUpInside)
         

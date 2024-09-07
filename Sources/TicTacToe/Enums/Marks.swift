@@ -15,9 +15,9 @@ enum Marks {
     var image: UIImage {
         switch self {
         case .cross:
-            return UIImage(named: "xmark") ?? UIImage()
+            return UIImage(systemName: "xmark") ?? UIImage()
         case .circle:
-            return UIImage(named: "circle") ?? UIImage()
+            return UIImage(systemName: "circle") ?? UIImage()
         case .none:
             return UIImage()
         }
