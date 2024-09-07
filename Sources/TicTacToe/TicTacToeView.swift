@@ -50,7 +50,7 @@ public final class TicTacToeView: UIView {
     
     
 //    MARK: Lifecycle
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
     }
