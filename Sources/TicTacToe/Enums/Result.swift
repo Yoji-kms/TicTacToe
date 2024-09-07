@@ -27,8 +27,8 @@ enum Result {
             String(localized: "Win")
 //            NSLocalizedString("Win", comment: "Win")
         case .loose:
-            String(localized: "Lost")
-//            NSLocalizedString("Lost", comment: "Lost")
+//            String(localized: "Lost")
+            NSLocalizedString("Lost", comment: "Lost")
         case .tie:
             String(localized: "Tie")
 //            NSLocalizedString("Tie", comment: "Tie")
