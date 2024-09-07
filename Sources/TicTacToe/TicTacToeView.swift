@@ -28,7 +28,7 @@ public final class TicTacToeView: UIView {
     }()
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
-        let width = self.frame.width
+        let width = self.frame.width * 0.9
         let layout = CollectionViewLayout(collectionViewWidth: width)
         return layout
     }()
