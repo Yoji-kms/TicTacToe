@@ -80,6 +80,7 @@ public final class TicTacToeView: UIView {
         self.viewModel.replay(){
             self.label.text = self.yourTurnString
             self.collectionView.reloadData()
+            self.collectionView.allowsSelection = true
         }
     }
 }
@@ -103,7 +104,6 @@ extension TicTacToeView: UICollectionViewDataSource {
 
 extension TicTacToeView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("cell \(indexPath) did tap")
         self.collectionView.allowsSelection = false
         self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result in
             guard let self else { return }
@@ -119,6 +119,8 @@ extension TicTacToeView: UICollectionViewDelegate {
                 self.label.text = yourTurnString
                 self.collectionView.allowsSelection = true
             }
+        } completionIfCellNotEmpty: {
+            self.collectionView.allowsSelection = true
         }
     }
 }

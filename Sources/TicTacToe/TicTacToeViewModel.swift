@@ -15,6 +15,7 @@ final class TicTacToeViewModel {
             var cell = CellModel(coordinates: id.coordinates, mark: .none)
             data.append(cell)
         }
+        data[5].mark = .circle
     }
     
     private func checkResult(competion: @escaping (Result)->Void) {
@@ -102,7 +103,8 @@ final class TicTacToeViewModel {
     func cellDidTap(
         id: Int,
         completionAfterPlayersMove: @escaping (Result)->Void,
-        completionAfterBotsMove: @escaping (Result, Int)->Void)
+        completionAfterBotsMove: @escaping (Result, Int)->Void,
+        completionIfCellNotEmpty: @escaping ()->Void)
     {
         if data[id].mark == .none {
             data[id].mark = .cross
@@ -113,6 +115,8 @@ final class TicTacToeViewModel {
                     self.makeMove(completion: completionAfterBotsMove)
                 }
             }
+        } else {
+            completionIfCellNotEmpty()
         }
     }
     
