@@ -40,7 +40,10 @@ public final class TicTacToeView: UIView {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.isScrollEnabled = false
-        
+        collectionView.register(TicTacToeCollectionViewCell.self, forCellWithReuseIdentifier: "TicTacToeCollectionViewCell")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
+        collectionView.layer.cornerRadius = 5
+        collectionView.backgroundColor = .white
 //        collectionView.delegate = self
         collectionView.dataSource = self
         
