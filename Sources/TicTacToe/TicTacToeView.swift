@@ -8,9 +8,6 @@ final class TicTacToeView: UIView {
     private let viewModel = TicTacToeViewModel()
     private let yourTurnString = NSLocalizedString("Your turn", comment: "Your turn")
     private let botsTurnString = NSLocalizedString("Bot’s turn", comment: "Bot’s turn")
-    private let winString = NSLocalizedString("Win", comment: "Win")
-    private let lostString = NSLocalizedString("Lost", comment: "Lost")
-    private let tieString = NSLocalizedString("Tie", comment: "Tie")
     
 //    MARK: Views
     private lazy var label: UILabel = {
@@ -42,6 +39,7 @@ final class TicTacToeView: UIView {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
+        collectionView.isScrollEnabled = false
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -101,5 +99,24 @@ extension TicTacToeView: UICollectionViewDataSource {
         cell.setup(with: self.viewModel.data[indexPath.row].mark)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.collectionView.allowsSelection = false
+        self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result in
+            guard let self else { return }
+            self.collectionView.reloadItems(at: [indexPath])
+            self.label.text = result.isFinal ? result.text : self.botsTurnString
+        } completionAfterBotsMove: { [weak self] result, index in
+            guard let self else { return }
+            let botsMoveIndexPath = IndexPath(row: index, section: 0)
+            self.collectionView.reloadItems(at: [botsMoveIndexPath])
+            if result.isFinal {
+                self.label.text = result.text
+            } else {
+                self.label.text = yourTurnString
+                self.collectionView.allowsSelection = true
+            }
+        }
     }
 }

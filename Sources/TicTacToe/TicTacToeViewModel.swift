@@ -17,19 +17,22 @@ final class TicTacToeViewModel {
         }
     }
     
-    private func checkResult() {
+    private func checkResult(competion: @escaping (Result)->Void) {
         let rowsResult = self.checkRows()
         let columnsResult = self.checkColumns()
         let diagonalsResult = self.checkDiagonals()
         
         if rowsResult.isFinal || columnsResult.isFinal || diagonalsResult.isFinal {
-        
+            if rowsResult.isFinal { competion(rowsResult) }
+            if columnsResult.isFinal { competion(rowsResult) }
+            if diagonalsResult.isFinal { competion(rowsResult) }
         } else {
             let tie = self.checkTie()
             if tie == .tie {
-                
+                competion(.tie)
             }
         }
+        competion(.none)
     }
     
     private func checkRows() -> Result {
@@ -96,20 +99,32 @@ final class TicTacToeViewModel {
         completion()
     }
     
-    func cellDidTap(id: Int) {
+    func cellDidTap(
+        id: Int,
+        completionAfterPlayersMove: @escaping (Result)->Void,
+        completionAfterBotsMove: @escaping (Result, Int)->Void)
+    {
         if data[id].mark == .none {
             data[id].mark = .cross
-            self.checkResult()
-            self.makeMove()
+            self.checkResult() { [weak self] result in
+                guard let self else { return }
+                completionAfterPlayersMove(result)
+                if !result.isFinal {
+                    self.makeMove(completion: completionAfterBotsMove)
+                }
+            }
         }
     }
     
-    private func makeMove() {
+    private func makeMove(completion: @escaping (Result, Int)->Void) {
         let emptyCells = self.data.filter { $0.mark == .none }
         guard let randomEmptyCell = emptyCells.randomElement() else { return }
         let randomEmptyCellIndex = randomEmptyCell.coordinates.id
         self.data[randomEmptyCellIndex].mark = .circle
-        self.checkResult()
+        self.checkResult() { [weak self] result in
+            guard let self else { return }
+            completion(result, randomEmptyCellIndex)
+        }
     }
 }
 
