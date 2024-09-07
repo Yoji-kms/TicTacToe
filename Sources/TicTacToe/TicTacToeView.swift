@@ -31,7 +31,6 @@ public final class TicTacToeView: UIView {
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         let width = self.frame.width
-        print(width)
         let layout = CollectionViewLayout(collectionViewWidth: width)
         return layout
     }()
@@ -42,6 +41,7 @@ public final class TicTacToeView: UIView {
         collectionView.register(TicTacToeCollectionViewCell.self, forCellWithReuseIdentifier: "TicTacToeCollectionViewCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
         collectionView.backgroundColor = .white
+        collectionView.allowsSelection = true
         collectionView.dataSource = self
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +100,7 @@ extension TicTacToeView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("cell \(indexPath) did tap")
         self.collectionView.allowsSelection = false
         self.viewModel.cellDidTap(id: indexPath.row) { [weak self] result in
             guard let self else { return }
