@@ -24,11 +24,14 @@ enum Result {
     var text: String {
         return switch self {
         case .win:
-            NSLocalizedString("Win", comment: "Win")
+            String(localized: "Win")
+//            NSLocalizedString("Win", comment: "Win")
         case .loose:
-            NSLocalizedString("Lost", comment: "Lost")
+            String(localized: "Lost")
+//            NSLocalizedString("Lost", comment: "Lost")
         case .tie:
-            NSLocalizedString("Tie", comment: "Tie")
+            String(localized: "Tie")
+//            NSLocalizedString("Tie", comment: "Tie")
         case .none:
             ""
         }

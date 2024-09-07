@@ -72,12 +72,12 @@ public final class TicTacToeView: UIView {
             self.label.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             
             self.replayButton.topAnchor.constraint(equalTo: self.topAnchor),
-            self.replayButton.trailingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.replayButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.replayButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
             self.replayButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1),
             
             self.collectionView.topAnchor.constraint(equalTo: self.label.bottomAnchor),
-            self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.collectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.collectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
             self.collectionView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
         ])
