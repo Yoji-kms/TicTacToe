@@ -30,10 +30,9 @@ public final class TicTacToeView: UIView {
     }()
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        layout.scrollDirection = .horizontal
+        let padding: CGFloat = 4
+        let width = self.frame.width - 2 * padding
+        let layout = CollectionViewLayout(collectionViewWidth: width)
         return layout
     }()
     
@@ -65,6 +64,8 @@ public final class TicTacToeView: UIView {
     
 //    MARK: Setups
     private func setupViews() {
+        self.addSubview(self.label)
+        self.addSubview(self.replayButton)
         self.addSubview(self.collectionView)
         
         NSLayoutConstraint.activate([
