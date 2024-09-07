@@ -26,7 +26,7 @@ final class CollectionViewLayout: UICollectionViewFlowLayout {
         let widthWithPadding = self.width - (self.spacing * 2)
         let itemWidth = (widthWithPadding - self.spacing * (columnsNumber - 1)) / columnsNumber
         self.minimumLineSpacing = self.spacing
-        self.minimumInteritemSpacing = spacing
+        self.minimumInteritemSpacing = self.spacing
         self.sectionInset = UIEdgeInsets(
             top: self.spacing,
             left: self.spacing,

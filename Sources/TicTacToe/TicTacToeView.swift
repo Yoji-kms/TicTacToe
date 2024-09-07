@@ -30,8 +30,8 @@ public final class TicTacToeView: UIView {
     }()
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
-        let padding: CGFloat = 4
-        let width = self.frame.width - 2 * padding
+        let width = self.frame.width
+        print(width)
         let layout = CollectionViewLayout(collectionViewWidth: width)
         return layout
     }()
@@ -41,9 +41,7 @@ public final class TicTacToeView: UIView {
         collectionView.isScrollEnabled = false
         collectionView.register(TicTacToeCollectionViewCell.self, forCellWithReuseIdentifier: "TicTacToeCollectionViewCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
-        collectionView.layer.cornerRadius = 5
         collectionView.backgroundColor = .white
-//        collectionView.delegate = self
         collectionView.dataSource = self
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,10 +82,6 @@ public final class TicTacToeView: UIView {
         }
     }
 }
-
-//extension TicTacToeView: UICollectionViewDelegate {
-//    
-//}
 
 extension TicTacToeView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
