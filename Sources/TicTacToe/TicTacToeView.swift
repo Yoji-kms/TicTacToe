@@ -29,12 +29,11 @@ public final class TicTacToeView: UIView {
         return button
     }()
     
-    private lazy var collectionViewLayout: UICollectionViewLayout = {
+    public lazy var collectionViewLayout: UICollectionViewLayout = {
         let width = self.frame.width
         let height = self.frame.height
         
         let less = (width > height ? height : width) * 0.9
-        print(less)
         let layout = CollectionViewLayout(collectionViewWidth: less)
         return layout
     }()
@@ -57,7 +56,6 @@ public final class TicTacToeView: UIView {
 //    MARK: Lifecycle
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        print(frame)
         self.backgroundColor = .white
         self.setupViews()
     }
