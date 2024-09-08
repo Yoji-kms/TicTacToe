@@ -7,7 +7,7 @@ let package = Package(
     name: "TicTacToe",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v15)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

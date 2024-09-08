@@ -7,6 +7,12 @@ public final class TicTacToeView: UIView {
 //    MARK: Variables
     private let viewModel = TicTacToeViewModel()
     
+    let backgroundColors: [UIColor] = [
+        .white,
+        .systemMint,
+        .systemPink
+    ]
+    
 //    MARK: Views
     private lazy var label: UILabel = {
         let text = ""
@@ -56,7 +62,7 @@ public final class TicTacToeView: UIView {
 //    MARK: Lifecycle
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = self.backgroundColors.randomElement()
         self.setupViews()
     }
     
