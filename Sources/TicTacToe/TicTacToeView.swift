@@ -33,7 +33,7 @@ public final class TicTacToeView: UIView {
         let width = self.frame.width
         let height = self.frame.height
         
-        let less = (width > height ? height : width) * 0.9
+        let less = (width > height ? height : width) * 0.85
         let layout = CollectionViewLayout(collectionViewWidth: less)
         return layout
     }()
